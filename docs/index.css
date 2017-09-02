@@ -3,6 +3,7 @@ body {
   font-family: 'Dancing Script', cursive;
   text-align: center;
   background-color: #3e50b4;
+  background-color: #263238;
 }
 
 a {
@@ -35,12 +36,13 @@ a:hover {
   height: 100%;
   overflow: hidden;
   border-radius: 50%;
+  position: relative;
 }
 
 .button {
+  position: absolute;
   height: 48%;
   width: 48%;
-  float: left;
 }
 
 .button.green {
@@ -49,18 +51,45 @@ a:hover {
 
 .button.red {
   background-color: #f34236;
-  float: right;
+  top: 0;
+  right: 0;
 }
 
 .button.blue {
-  background-color: #2195f2;
-  float: right;
-  margin-top: 4%;
+  background-color: #2196f3;
+  bottom: 0;
+  right: 0;
 }
 
 .button.yellow {
-  margin-top: 4%;
-  background-color: #feea3b;
+  background-color: #fcbf07;
+  bottom: 0;
+  left: 0;
+}
+
+
+/*active state*/
+
+.button.green.active {
+  background-color: #8bc34a;
+}
+
+.button.red.active {
+  background-color: #ff5722;
+  top: 0;
+  right: 0;
+}
+
+.button.blue.active {
+  background-color: #64b5f6;
+  bottom: 0;
+  right: 0;
+}
+
+.button.yellow.active {
+  background-color: #fce83a;
+  bottom: 0;
+  left: 0;
 }
 
 
