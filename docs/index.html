@@ -30,6 +30,18 @@
             <div class="switch-button" :class="{'active': active}" @click="toggleActive"></div>
           </div>
         </div>
+        <div class="message-overlay info" v-show="message==='info'" @click="message=null">
+          <h2>Welcome!</h2>
+          <p>Click anywhere to start the game.</p>
+        </div>
+        <div class="message-overlay success" v-show="message==='success'" @click="message=null">
+          <h2>Congratulations!</h2>
+          <p>You have good memory!</p>
+        </div>
+        <div class="message-overlay warn" v-show="message==='warn'" @click="message=null">
+          <h2>Failed!</h2>
+          <p>Click anywhere to try again.</p>
+        </div>
       </div>
       <h2 class="brand">Designed and Coded by <a href="https://github.com/mubaidr">mubaidr</a></h2>
     </div>

@@ -4,21 +4,20 @@ Vue.config.productionTip = false
 var myApp = new Vue({
   el: '#app',
   data: {
-    active: true,
-    running: true,
+    active: false,
+    running: false,
     strict: false,
     activeInputState: false,
     series: [],
     inputSeries: [],
     activeCount: 1,
-    targetCount: 3,
+    targetCount: 20,
     activeButton: null,
-    timeouts: []
+    timeouts: [],
+    message: 'info'
   },
   created () {},
-  mounted () {
-    this.startGame()
-  },
+  mounted () {},
   watch: {
     'active' () {
       this.running = false
@@ -43,6 +42,9 @@ var myApp = new Vue({
     }
   },
   methods: {
+    showMessage (msg, type) {
+
+    },
     handleButtonClick (button) {
       if (!this.activeInputState) return
 
@@ -51,7 +53,7 @@ var myApp = new Vue({
       if (this.series[index] === button) {
         this.inputSeries.push(button)
       } else {
-        alert('epic fail. noob')
+        this.message = 'warn'
         if (this.strict) {
           this.activeCount = 1
         } else {
@@ -61,7 +63,7 @@ var myApp = new Vue({
 
       if (this.inputSeries.length === this.activeCount) {
         if (this.activeCount === this.targetCount) {
-          alert('wow... so pro!')
+          this.message = 'success'
           this.running = false
         } else {
           this.activeCount++
