@@ -10,8 +10,8 @@ var myApp = new Vue({
     activeInputState: false,
     series: [],
     inputSeries: [],
-    activeCount: 3,
-    targetCount: 20,
+    activeCount: 1,
+    targetCount: 3,
     activeButton: null,
     timeouts: []
   },
@@ -26,6 +26,7 @@ var myApp = new Vue({
       this.activeInputState = false
     },
     'running' (val) {
+      this.activeCount = 1
       if (val) {
         this.startGame()
       } else {
@@ -44,25 +45,48 @@ var myApp = new Vue({
   methods: {
     handleButtonClick (button) {
       if (!this.activeInputState) return
-      this.inputSeries.push(button)
+
+      let index = this.inputSeries.length
+
+      if (this.series[index] === button) {
+        this.inputSeries.push(button)
+      } else {
+        alert('epic fail. noob')
+        if (this.strict) {
+          this.activeCount = 1
+        } else {
+          this.displaySeries()
+        }
+      }
+
+      if (this.inputSeries.length === this.activeCount) {
+        if (this.activeCount === this.targetCount) {
+          alert('wow... so pro!')
+          this.running = false
+        } else {
+          this.activeCount++
+          this.displaySeries()
+        }
+      }
     },
     displaySeries (callback) {
       this.activeInputState = false
-      for (var i = 1; i <= this.activeCount; i++) {
+      this.inputSeries = []
+      for (var i = 0; i < this.activeCount; i++) {
         let tmp = i
 
         let to = setTimeout(() => {
-          this.activeButton = this.series[tmp - 1]
+          this.activeButton = this.series[tmp]
 
           setTimeout(() => {
             this.activeButton = null
-            if (tmp === this.activeCount) {
+            if (tmp === this.activeCount - 1) {
               this.activeInputState = true
               if (callback) callback()
             }
-          }, 1000)
+          }, 500)
         },
-        i * 2 * 1000)
+        1000 + (i * 1000))
 
         this.timeouts.push(to)
       }
@@ -72,6 +96,7 @@ var myApp = new Vue({
       this.displaySeries()
     },
     generateSeries () {
+      this.series = []
       for (var i = 0; i < this.targetCount; i++) {
         this.series.push(Math.floor((Math.random() * 4) + 1))
       }
