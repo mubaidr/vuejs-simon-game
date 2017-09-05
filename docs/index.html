@@ -14,27 +14,27 @@
     <div id="app">
       <h1 class="brand">Vue.js Simon Game</h1>
       <div class="game-board">
-        <div class="buttons">
-          <div class="button green"></div>
-          <div class="button red"></div>
-          <div class="button yellow"></div>
-          <div class="button blue"></div>
+        <div class="buttons" :class="{'activeInputState': activeInputState}">
+          <div class="button green" :class="{'active': activeButton == 1 && running}"></div>
+          <div class="button red" :class="{'active': activeButton == 2 && running}"></div>
+          <div class="button yellow" :class="{'active': activeButton == 3 && running}"></div>
+          <div class="button blue" :class="{'active': activeButton == 4 && running}"></div>
         </div>
         <div class="controls">
           <div class="container">
             <h3>Simon&reg;</h3>
-            <div class="display">--</div>
-            <div class="push-button start"></div>
-            <div class="push-button strict active"></div>
+            <div class="display" :class="{'active': active}">{{getActiveCount}}</div>
+            <div class="push-button start" :class="{'active': running}" @click="toggleRunning"></div>
+            <div class="push-button strict" :class="{'active': strict}" @click="toggleStrict"></div>
             <br/>
-            <div class="switch-button active"></div>
+            <div class="switch-button" :class="{'active': active}" @click="toggleActive"></div>
           </div>
         </div>
       </div>
       <h2 class="brand">Designed and Coded by <a href="https://github.com/mubaidr">mubaidr</a></h2>
     </div>
-    <!-- <script src="../node_modules/vue/dist/vue.js"></script> -->
-    <script src="https://unpkg.com/vue"></script>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <!-- <script src="https://unpkg.com/vue"></script> -->
     <script src="./index.js"></script>
   </body>
 
