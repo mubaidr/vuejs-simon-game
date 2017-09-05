@@ -14,11 +14,21 @@ var myApp = new Vue({
     targetCount: 20,
     activeButton: null,
     timeouts: [],
+    waitforInput: null,
     message: 'info'
   },
   created () {},
   mounted () {},
   watch: {
+    'message' (newVal, oldVal) {
+      if (oldVal === 'warn' && newVal === null) {
+        if (this.strict) {
+          this.activeCount = 1
+        } else {
+          this.displaySeries()
+        }
+      }
+    },
     'active' () {
       this.running = false
       this.strict = false
@@ -42,11 +52,9 @@ var myApp = new Vue({
     }
   },
   methods: {
-    showMessage (msg, type) {
-
-    },
     handleButtonClick (button) {
       if (!this.activeInputState) return
+      clearTimeout(this.waitforInput)
 
       let index = this.inputSeries.length
 
@@ -54,11 +62,6 @@ var myApp = new Vue({
         this.inputSeries.push(button)
       } else {
         this.message = 'warn'
-        if (this.strict) {
-          this.activeCount = 1
-        } else {
-          this.displaySeries()
-        }
       }
 
       if (this.inputSeries.length === this.activeCount) {
@@ -70,6 +73,10 @@ var myApp = new Vue({
           this.displaySeries()
         }
       }
+
+      this.waitforInput = setTimeout(() => {
+        this.message = 'warn'
+      }, 5000)
     },
     displaySeries (callback) {
       this.activeInputState = false
@@ -84,6 +91,10 @@ var myApp = new Vue({
             this.activeButton = null
             if (tmp === this.activeCount - 1) {
               this.activeInputState = true
+              clearTimeout(this.waitforInput)
+              this.waitforInput = setTimeout(() => {
+                this.message = 'warn'
+              }, 5000)
               if (callback) callback()
             }
           }, 500)
