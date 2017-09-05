@@ -42,6 +42,11 @@
           <h2>Failed!</h2>
           <p>Click anywhere to try again.</p>
         </div>
+        <div class="hide">
+          <audio v-for="(sound, index) in sounds" :ref="'sound' + index">
+            <source :src="sound" type="audio/mpeg">
+          </audio>
+        </div>
       </div>
       <h2 class="brand">Designed and Coded by <a href="https://github.com/mubaidr">mubaidr</a></h2>
     </div>

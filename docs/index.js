@@ -21,7 +21,7 @@ var myApp = new Vue({
       2: 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3',
       3: 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3',
       4: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3',
-      'error': ''
+      5: ''
     }
   },
   created () {},
@@ -59,9 +59,14 @@ var myApp = new Vue({
     }
   },
   methods: {
+    playSound (id) {
+      this.$refs['sound' + id][0].play()
+    },
     handleButtonClick (button) {
       if (!this.activeInputState) return
       clearTimeout(this.waitforInput)
+
+      this.playSound(button)
 
       let index = this.inputSeries.length
 
@@ -93,7 +98,7 @@ var myApp = new Vue({
 
         let to = setTimeout(() => {
           this.activeButton = this.series[tmp]
-
+          this.playSound(this.activeButton)
           setTimeout(() => {
             this.activeButton = null
             if (tmp === this.activeCount - 1) {
