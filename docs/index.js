@@ -15,7 +15,14 @@ var myApp = new Vue({
     activeButton: null,
     timeouts: [],
     waitforInput: null,
-    message: 'info'
+    message: 'info',
+    sounds: {
+      1: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
+      2: 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3',
+      3: 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3',
+      4: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3',
+      'error': ''
+    }
   },
   created () {},
   mounted () {},

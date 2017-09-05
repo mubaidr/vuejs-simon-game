@@ -179,10 +179,25 @@ a:hover {
   font-weight: bold;
   float: left;
   margin: 0 4.5%;
+  position: relative;
 }
 
 .controls .display.active {
   color: #f44336;
+}
+
+.controls .display:before {
+  content: 'Count';
+  position: absolute;
+  bottom: -40%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #222;
 }
 
 .push-button {
@@ -210,8 +225,30 @@ a:hover {
   background-color: #f44336;
 }
 
+.push-button.start:after {
+  content: 'Start';
+  position: absolute;
+  bottom: -80%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  font-size: 0.75em;
+  text-align: center;
+}
+
 .push-button.strict {
   background-color: #ffc107;
+}
+
+.push-button.strict:after {
+  content: 'Strict';
+  position: absolute;
+  bottom: -80%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  font-size: 0.75em;
+  text-align: center;
 }
 
 .push-button::before {
@@ -251,12 +288,26 @@ a:hover {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #2196f3;
   width: 50%;
   height: 16px;
+  background-color: #eee;
 }
 
 .switch-button.active::before {
   left: auto;
   right: 0;
+  background-color: #2196f3;
+}
+
+.switch-button:after {
+  content: 'Power';
+  position: absolute;
+  bottom: -120%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  font-weight: normal;
+  font-size: 15px;
+  letter-spacing: 1px;
 }
