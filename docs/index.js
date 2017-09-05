@@ -20,8 +20,7 @@ var myApp = new Vue({
       1: 'https://s3.amazonaws.com/freecodecamp/simonSound1.mp3',
       2: 'https://s3.amazonaws.com/freecodecamp/simonSound2.mp3',
       3: 'https://s3.amazonaws.com/freecodecamp/simonSound3.mp3',
-      4: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3',
-      5: ''
+      4: 'https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'
     }
   },
   created () {},
